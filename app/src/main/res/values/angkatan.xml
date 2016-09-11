@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="angkatan">
+        <item> Squad22 </item>
+        <item> Mascot23 </item>
+        <item> 24Hours </item>
+        <item> System25 </item>
+    </string-array>
+</resources>

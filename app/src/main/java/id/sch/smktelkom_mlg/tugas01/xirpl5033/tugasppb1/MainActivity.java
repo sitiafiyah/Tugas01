@@ -9,6 +9,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
@@ -16,11 +17,12 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     EditText etNama;
     EditText etKelas;
     Button bOK;
-    TextView tvHasil, tvJN, tvHB;
+    TextView tvHasil, tvJN, tvHsHB, tvHB, tvAN;
     int nHB;
     RadioButton rbLK, rbPM;
     RadioGroup rgJK;
     CheckBox cbCG, cbBG, cbML, cbMB;
+    Spinner spAN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +43,11 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         cbBG = (CheckBox) findViewById(R.id.checkBoxBG);
         cbML = (CheckBox) findViewById(R.id.checkBoxML);
         cbMB = (CheckBox) findViewById(R.id.checkBoxMB);
+        tvHsHB = (TextView) findViewById(R.id.textViewHsHB);
         tvHB = (TextView) findViewById(R.id.textViewHB);
+
+        spAN = (Spinner) findViewById(R.id.spinnerAngkatan);
+        tvAN = (TextView) findViewById(R.id.textViewAN);
 
         cbCG.setOnCheckedChangeListener(this);
         cbBG.setOnCheckedChangeListener(this);
@@ -56,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                 doProcess();
             }
         });
+
     }
 
     private void doClick() {
@@ -72,6 +79,20 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         } else {
             tvJN.setText("Jenis Kelamin : " + JN);
         }
+
+
+        String HsHB = "Hobi Anda : \n";
+        int startlen = HsHB.length();
+        if (cbCG.isChecked()) HsHB += cbCG.getText() + "\n";
+        if (cbBG.isChecked()) HsHB += cbBG.getText() + "\n";
+        if (cbML.isChecked()) HsHB += cbML.getText() + "\n";
+        if (cbMB.isChecked()) HsHB += cbMB.getText() + "\n";
+
+        if (HsHB.length() == startlen) HsHB += "Tidak ada pada Pilihan";
+
+        tvHsHB.setText(HsHB);
+
+        tvAN.setText("Angkatan : " + spAN.getSelectedItem().toString());
     }
 
     private void doProcess() {
